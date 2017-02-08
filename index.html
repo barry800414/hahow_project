@@ -11,8 +11,32 @@
   <link rel="stylesheet" href="/css/index.css" type="text/css">
   </head>
   <body>
-
-
-  <script src="/js/libs/vue.min.js"></script>
+    <div id="hero-dashboard">
+      <div id="hero-list">
+        <div class="hero" v-for="h in heros">
+          <div class="hero-photo">
+            <img v-bind:src="h.image">
+          </div>
+          <div v-bind:id="'hero_' + h.id" class="hero-name">
+            <span>{{h.name}}</span>
+          </div>
+        </div>
+      </div>
+      <div id="hero-profile">
+        <div class="hero-profile-list" v-for="(value, ability) in profile">
+          <div class="hero-ability">
+            <span>{{ability}}</span>
+            <button>+</button>
+            <span>{{value}}</span>
+            <button>-</button>
+          </div>
+        </div>
+        <div class="update-profile-block">
+          <button>Update</button>
+        </div>
+      </div>
+    </div>
+    <script src="./js/libs/vue.js"></script>
+    <script src="./js/index.js"></script>
   </body>
 </html>
