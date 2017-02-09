@@ -13,14 +13,16 @@
   <body>
     <div id="hero-dashboard">
       <div id="hero-list">
-        <div class="hero" v-for="h in heros">
-          <div class="hero-photo">
-            <img v-bind:src="h.image">
+        <div v-for="h in heros">
+          <button class="hero" v-on:click="loadHero(h.id)">
+            <div class="hero-photo">
+              <img v-bind:src="h.image">
+            </div>
+            <div v-bind:id="'hero_' + h.id" class="hero-name">
+              <span>{{h.name}}</span>
+            </div>
           </div>
-          <div v-bind:id="'hero_' + h.id" class="hero-name">
-            <span>{{h.name}}</span>
-          </div>
-        </div>
+        </button>
       </div>
       <div id="hero-profile">
         <div class="hero-profile-list" v-for="(value, ability) in profile">
@@ -37,6 +39,7 @@
       </div>
     </div>
     <script src="./js/libs/vue.js"></script>
+    <script src="./js/libs/vue-resource.min.js"></script>
     <script src="./js/index.js"></script>
   </body>
 </html>
