@@ -25,12 +25,18 @@ var heroProfile = new Vue({
         remain_points: 0,
     },
     methods: {
+        resetHeroProfile: function() {
+            this.profile = null;
+            this.remain_points = 0;
+            this.hero_id = 0;
+        },
         loadHeroProfile: function(hero_id) {
             this.$http.get(`http://hahow-recruit.herokuapp.com/heroes/${hero_id}/profile`).then(function(res) {
                 return res.json();
             }).then(function(data){
                 this.profile = data;
                 this.hero_id = hero_id;
+                router.setRoute(`/heros/${this.hero_id}`);
             });
         },
         addPoint: function(type) {
@@ -54,3 +60,23 @@ var heroProfile = new Vue({
         }
     }
 });
+
+const router = Router({
+  "/heros": {
+    on: () => {
+        heroProfile.resetHeroProfile();
+    },
+  },
+  "/heros/:hero_id": {
+    on: (hero_id) => {
+        heroProfile.loadHeroProfile(hero_id);
+    },
+  },
+}).configure({
+  notfound: () => {
+    router.setRoute(`/heros`);
+  },
+});
+
+// wait the event trigger done
+router.init(["/"]);
