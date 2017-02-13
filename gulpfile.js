@@ -12,20 +12,23 @@ const basePath = {
 const src  = {
     libs: basePath.src + 'js/libs/',
     js: basePath.src + 'js/',
-    view: basePath.src + 'view/'
+    view: basePath.src + 'view/',
+    css: basePath.src + 'css/',
 };
 
 const dest = {
     js: basePath.dest + 'js/',
     view: basePath.static,
+    css: basePath.dest + 'css/',
 };
-
 
 //Task: concatenate dependencies
 gulp.task('make:dependencies', function() {
     console.log("make:dependencies");
     return gulp
         .src([
+            src.libs + 'jquery-3.1.1.min.js',
+            src.libs + 'bootstrap.min.js',
             src.libs + 'vue.min.js',
             src.libs + 'vue-resource.min.js',
             src.libs + 'director.min.js',
@@ -49,7 +52,16 @@ gulp.task('copy:view', function() {
         .pipe(gulp.dest(dest.view));
 });
 
+//Task: copy css
+gulp.task('copy:style', function() {
+    return gulp.src([
+        src.css + 'bootstrap.min.css',
+        src.css + 'index.css'
+        ])
+        .pipe(gulp.dest(dest.css));
+});
+
 //Main task runner
 gulp.task('default', function() {
-    runSequence( 'make:dependencies', 'make:main-scripts', 'copy:view');
+    runSequence( 'make:dependencies', 'make:main-scripts', 'copy:view', 'copy:style');
 });

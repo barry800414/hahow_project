@@ -1,0 +1,77 @@
+
+#hero-dashboard {
+    margin: auto;
+    max-width: 80%;
+}
+
+#hero-list-container {
+    background: red;
+    padding: 10px;
+}
+
+#hero-list {
+    background: red;
+
+    border-radius: 0px 0px 0px 0px;
+    -moz-border-radius: 0px 0px 0px 0px;
+    -webkit-border-radius: 0px 0px 0px 0px;
+    border: 6px solid #ffffff;
+
+    padding: 20px 20px 0px 20px;
+    margin-bottom: 0px;
+}
+
+.hero-card {
+    padding: 10px;
+    background: white;
+    border-width: 0px;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    margin-bottom: 20px;
+}
+
+.hero-card:hover, .hero-card.selected {
+    background: yellow;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.hero-name {
+    font-size: 20pt;
+    font-weight: bold;
+}
+
+#hero-profile {
+    margin-top: 20px;
+    background: white;
+    padding: 10px;
+    color: black;
+    font-size: 20px;
+}
+
+#hero-profile-container {
+    background: white;
+
+    border-radius: 0px 0px 0px 0px;
+    -moz-border-radius: 0px 0px 0px 0px;
+    -webkit-border-radius: 0px 0px 0px 0px;
+    border: 6px solid red;
+
+    padding: 30px 5% 0px 5%;
+    margin-bottom: 0px;
+}
+
+.profile-btn {
+    border-color: red;
+    border-radius: 0px;
+    color: red;
+    font-size: 20px;
+}
+
+.profile-btn:hover {
+    background-color: red;
+    border-color: white;
+    color: white;
+}
