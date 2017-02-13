@@ -14,7 +14,7 @@ After above commands, please just open `index.html` in `public` folder, or using
 ## Applied framework and packages
 * Front-end framework: [Vue.js](https://vuejs.org/) and vue-resource.js for sending requests.
 * Routing: using [Director.js](https://github.com/flatiron/director) to implement routing service.
-* Style: using [Flexbox](http://www.w3schools.com/css/css3_flexbox.asp) for layout and RWD.
+* Style: using [Bootstrap](http://getbootstrap.com/) for layout and RWD.
 * Build: using [Gulp](http://gulpjs.com/) to build website.
 * Javascript compiler: using [Babel](https://babeljs.io/) to compile js to a more compatible version.
 
