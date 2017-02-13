@@ -2,6 +2,7 @@ var heroList = new Vue({
     el: '#hero-list',
     data: {
         heros: null,
+        selected_hero: -1,
     },
     created: function() {
         //send request to get hero list, and update hero list interface
@@ -13,11 +14,18 @@ var heroList = new Vue({
         });
     },
     methods: {
-        loadHero: function(hero_id){
-            //use router to invoke loading hero profile function
+        reset: function() {
+            this.selected_hero = -1;
+        },
+        loadHeroByClick: function(hero_id) {
+            this.loadHero(hero_id);
             router.setRoute(`/heros/${hero_id}`);
-        }
-    }
+        },
+        loadHero: function(hero_id){
+            this.selected_hero = hero_id;
+            heroProfile.loadHeroProfile(hero_id);
+        },
+    },
 });
 
 var heroProfile = new Vue({
@@ -29,7 +37,7 @@ var heroProfile = new Vue({
     },
     methods: {
         //reset heroProfile to initial status
-        resetHeroProfile: function() {
+        reset: function() {
             this.profile = null;
             this.remain_points = 0;
             this.hero_id = 0;
@@ -72,12 +80,13 @@ var heroProfile = new Vue({
 const router = Router({
   "/heros": {
     on: () => {
-        heroProfile.resetHeroProfile();
+        heroList.reset()
+        heroProfile.reset();
     },
   },
   "/heros/:hero_id": {
     on: (hero_id) => {
-        heroProfile.loadHeroProfile(hero_id);
+        heroList.loadHero(hero_id);
     },
   },
 }).configure({

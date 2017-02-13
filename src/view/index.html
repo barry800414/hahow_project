@@ -14,7 +14,7 @@
     <div id="hero-dashboard">
       <div id="hero-list">
         <div v-for="h in heros">
-          <button class="hero" v-on:click="loadHero(h.id)">
+          <button class="hero" v-on:click="loadHeroByClick(h.id)" v-bind:class="{selected: h.id == selected_hero}">
             <div class="hero-photo">
               <img v-bind:src="h.image">
             </div>
