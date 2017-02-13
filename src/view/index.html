@@ -8,37 +8,41 @@
   <meta name="author" content="Wei-Ming">
   <meta name="description" content="hahow recruiting project">
   <meta name="keywords" content="front-end, css, html, js, recruit, hahow">
-  <link rel="stylesheet" href="/css/index.css" type="text/css">
+  <link rel="stylesheet" href="./assets/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="./assets/css/index.css" type="text/css">
   </head>
   <body>
-    <div id="hero-dashboard">
-      <div id="hero-list">
-        <div v-for="h in heros">
-          <button class="hero" v-on:click="loadHeroByClick(h.id)" v-bind:class="{selected: h.id == selected_hero}">
-            <div class="hero-photo">
-              <img v-bind:src="h.image">
-            </div>
-            <div v-bind:id="'hero_' + h.id" class="hero-name">
-              <span>{{h.name}}</span>
+    <div id="hero-dashboard" class="container">
+      <div id="hero-list-container">
+        <div id="hero-list" class="panel panel-default">
+          <div class="panel-body">
+            <div class="row">
+              <div v-for="h in heros" class="col-sm-5 col-md-4 col-lg-3">
+                <button class="hero-card" v-on:click="loadHeroByClick(h.id)" v-bind:class="{selected: h.id == selected_hero}">
+                  <div class="hero-photo">
+                    <img v-bind:src="h.image">
+                  </div>
+                  <div v-bind:id="'hero_' + h.id" class="hero-name">
+                    <span class="hero-name">{{h.name}}</span>
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
-        </button>
+        </div>
       </div>
       <div id="hero-profile" v-show="profile">
-        <div class="hero-profile-list" v-for="(value, ability) in profile">
-          <div class="hero-ability">
-            <span>{{ability}}</span>
-            <button v-on:click="addPoint(ability)">+</button>
+        <div id="hero-profile-container">
+          <div class="hero-ability form-group" v-for="(value, ability) in profile">
+            <label class="control-label">{{ability}}</label>
+            <button class="profile-btn btn btn-default" v-on:click="addPoint(ability)">+</button>
             <span>{{value}}</span>
-            <button v-on:click="minusPoint(ability)">-</button>
+            <button class="profile-btn btn btn-default" v-on:click="minusPoint(ability)">-</button>
           </div>
-        </div>
-        <div class="remain_points">
-          <span>剩餘點數:</span>
-          <span>{{remain_points}}</span>
-        </div>
-        <div class="update-profile-block">
-          <button v-on:click="updateProfile()">Update</button>
+          <div class="remain_points form-group text-right">
+            <label class="control-label">剩餘點數:{{remain_points}}  </label>
+            <button class="profile-btn btn btn-default" v-on:click="updateProfile()">儲存</button>
+          </div>
         </div>
       </div>
     </div>
