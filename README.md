@@ -9,6 +9,7 @@ Please install [npm](https://www.npmjs.com/) first.
 ## Build
 * install required packages: `npm install`
 * build website: `npm start`
+
 After above commands, please just use browser to open `index.html` in `public` folder, or using `python3 -m server.http` to invoke a http server, then type in `http://localhost:8000/public/index.html`.
 
 ## Applied framework and packages
