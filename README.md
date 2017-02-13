@@ -3,6 +3,9 @@ Hahow Front-End Engineer Recruiting Project
 
 This is a small project for recruiting front-end engineer in Hahow. Inc., please check [Reference](http://hahow-recruit.herokuapp.com/frontend) first. And, demo website is [here](https://github.com/barry800414/hahow_project).
 
+## Author
+Wei-Ming Chen barry800414@gmail.com
+
 ## Prerequisites
 Please install [npm](https://www.npmjs.com/) first.
 
