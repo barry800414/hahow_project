@@ -5,8 +5,9 @@ var heroList = new Vue({
     },
     created: function() {
         //send request to get hero list, and update hero list interface
-        this.$http.get("http://hahow-recruit.herokuapp.com/heroes").then(function(res) {
-            return res.json();
+        this.$http.get("http://hahow-recruit.herokuapp.com/heroes").then(
+            res => { return res.json(); },
+            err => { alert("讀取英雄列表發生錯誤:", err);
         }).then(function(data){
             this.heros = data;
         });
@@ -34,8 +35,9 @@ var heroProfile = new Vue({
             this.hero_id = 0;
         },
         loadHeroProfile: function(hero_id) {
-            this.$http.get(`http://hahow-recruit.herokuapp.com/heroes/${hero_id}/profile`).then(function(res) {
-                return res.json();
+            this.$http.get(`http://hahow-recruit.herokuapp.com/heroes/${hero_id}/profile`).then(
+                res => { return res.json(); },
+                err => { alert("讀取英雄檔案時發生錯誤:", err);
             }).then(function(data){
                 this.profile = data;
                 this.hero_id = hero_id;
@@ -57,13 +59,12 @@ var heroProfile = new Vue({
             if(this.remain_points !== 0){
                 alert("剩餘點數應為0");
             } else {
-                this.$http.patch(`http://hahow-recruit.herokuapp.com/heroes/${this.hero_id}/profile`, this.profile).then(function(res) {
-                    alert('更新成功');
-                }, function(error){
-                    alert('更新失敗:', error);
-                });    
+                this.$http.patch(`http://hahow-recruit.herokuapp.com/heroes/${this.hero_id}/profile`, this.profile).then(
+                    res => { alert('英雄檔案更新成功'); },
+                    err => { alert('更新失敗:', err);
+                });
             }
-            
+
         }
     }
 });
