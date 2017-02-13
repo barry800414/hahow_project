@@ -1,0 +1,30 @@
+{
+  "name": "hahow_frontend_project",
+  "version": "1.0.0",
+  "description": "Hahow recruiting front-end project",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-preset-env": "^1.1.8",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barry800414/hahow_project.git"
+  },
+  "keywords": [
+    "front-end",
+    "vue",
+    "flex"
+  ],
+  "author": "Wei-Ming Chen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/barry800414/hahow_project/issues"
+  },
+  "homepage": "https://github.com/barry800414/hahow_project#readme"
+}
