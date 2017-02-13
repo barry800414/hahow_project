@@ -4,6 +4,7 @@ var heroList = new Vue({
         heros: null,
     },
     created: function() {
+        //send request to get hero list, and update hero list interface
         this.$http.get("http://hahow-recruit.herokuapp.com/heroes").then(function(res) {
             return res.json();
         }).then(function(data){
@@ -12,7 +13,8 @@ var heroList = new Vue({
     },
     methods: {
         loadHero: function(hero_id){
-            heroProfile.loadHeroProfile(hero_id);
+            //use router to invoke loading hero profile function
+            router.setRoute(`/heros/${hero_id}`);
         }
     }
 });
@@ -25,6 +27,7 @@ var heroProfile = new Vue({
         remain_points: 0,
     },
     methods: {
+        //reset heroProfile to initial status
         resetHeroProfile: function() {
             this.profile = null;
             this.remain_points = 0;
@@ -36,7 +39,6 @@ var heroProfile = new Vue({
             }).then(function(data){
                 this.profile = data;
                 this.hero_id = hero_id;
-                router.setRoute(`/heros/${this.hero_id}`);
             });
         },
         addPoint: function(type) {
@@ -52,11 +54,16 @@ var heroProfile = new Vue({
             }
         },
         updateProfile: function() {
-            this.$http.patch(`http://hahow-recruit.herokuapp.com/heroes/${this.hero_id}/profile`, this.profile).then(function(res) {
-                //update success
-            }, function(error){
-                //update failed
-            });
+            if(this.remain_points !== 0){
+                alert("剩餘點數應為0");
+            } else {
+                this.$http.patch(`http://hahow-recruit.herokuapp.com/heroes/${this.hero_id}/profile`, this.profile).then(function(res) {
+                    alert('更新成功');
+                }, function(error){
+                    alert('更新失敗:', error);
+                });    
+            }
+            
         }
     }
 });
@@ -78,5 +85,5 @@ const router = Router({
   },
 });
 
-// wait the event trigger done
+// wait the event trigger
 router.init(["/"]);
