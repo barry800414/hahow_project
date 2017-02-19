@@ -2,11 +2,7 @@
 #hero-dashboard {
     margin: auto;
     max-width: 80%;
-}
-
-#hero-list-container {
-    background: red;
-    padding: 10px;
+    min-width: 300px;
 }
 
 #hero-list {
@@ -18,7 +14,8 @@
     border: 6px solid #ffffff;
 
     padding: 20px 20px 0px 20px;
-    margin-bottom: 0px;
+    margin: 10px;
+    outline: 8px solid red;
 }
 
 .hero-card {
@@ -28,7 +25,9 @@
     -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
-    margin-bottom: 20px;
+    margin: 0px 5px 20px 5px;
+
+    display: inline-block;
 }
 
 .hero-card:hover, .hero-card.selected {
