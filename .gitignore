@@ -8,6 +8,7 @@
 
 # Dependency directory
 node_modules
+bower_components
 
 ### Vim ###
 [._]*.s[a-w][a-z]

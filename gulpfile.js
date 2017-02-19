@@ -2,6 +2,9 @@ const gulp = require("gulp");
 const babel = require("gulp-babel");
 const runSequence = require('run-sequence');
 const concat = require('gulp-concat');
+const filter = require('gulp-filter');
+const uglify = require('gulp-uglify');
+const mainBowerFiles = require('gulp-main-bower-files');
 
 const basePath = {
     src: 'src/',
@@ -22,18 +25,11 @@ const dest = {
     css: basePath.dest + 'css/',
 };
 
-//Task: concatenate dependencies
-gulp.task('make:dependencies', function() {
-    console.log("make:dependencies");
-    return gulp
-        .src([
-            src.libs + 'jquery-3.1.1.min.js',
-            src.libs + 'bootstrap.min.js',
-            src.libs + 'vue.min.js',
-            src.libs + 'vue-resource.min.js',
-            src.libs + 'director.min.js',
-        ])
+gulp.task('make:js-dependencies', function(){
+    return gulp.src('./bower.json')
+        .pipe(mainBowerFiles())
         .pipe(concat('dependencies.js'))
+        .pipe(uglify())
         .pipe(gulp.dest(dest.js));
 });
 
@@ -63,5 +59,5 @@ gulp.task('copy:style', function() {
 
 //Main task runner
 gulp.task('default', function() {
-    runSequence( 'make:dependencies', 'make:main-scripts', 'copy:view', 'copy:style');
+    runSequence( 'make:js-dependencies', 'make:main-scripts', 'copy:view', 'copy:style');
 });
