@@ -24,12 +24,19 @@
       </div>
       <div id="hero-profile" v-show="profile">
           <div class="profile-block">
-            <div v-for="(value, ability) in profile">
-              <label>{{ability}}</label>
-              <button class="profile-btn" v-on:click="addPoint(ability)">+</button>
-              <span>{{value}}</span>
-              <button class="profile-btn" v-on:click="minusPoint(ability)">-</button>
-            </div>
+            <table>
+              <tr v-for="(value, ability) in profile">
+                <td>
+                  <label>{{ability}}</label>
+                </td><td>
+                  <button class="profile-btn" v-on:click="addPoint(ability)">+</button>
+                </td><td>
+                  <span>{{value}}</span>
+                </td><td>
+                  <button class="profile-btn" v-on:click="minusPoint(ability)">-</button>
+                </td>
+              </tr>
+            </table>
           </div>
           <div class="profile-block text-right">
             <div>剩餘點數:{{remain_points}}  </div>
