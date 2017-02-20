@@ -55,8 +55,7 @@ gulp.task('copy:view', function() {
 //Task: copy css
 gulp.task('copy:style', function() {
     return gulp.src([
-        src.css + 'bootstrap.min.css',
-        src.css + 'index.css'
+            src.css + 'index.css',
         ])
         .pipe(gulp.dest(dest.css))
         .pipe(browserSync.stream());
