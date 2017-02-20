@@ -1,7 +1,7 @@
 Hahow Front-End Engineer Recruiting Project
 ===
 
-This is a small project for recruiting front-end engineer in Hahow. Inc., please check [Reference](http://hahow-recruit.herokuapp.com/frontend) first. 
+This is a small project for recruiting front-end engineer in Hahow. Inc., please check [Reference](http://hahow-recruit.herokuapp.com/frontend) first.
 
 ## Author
 Wei-Ming Chen barry800414@gmail.com
@@ -13,7 +13,7 @@ Please install [npm](https://www.npmjs.com/) first.
 * install required packages: `npm install`
 * build website: `npm start`
 
-After above commands, please just use browser to open `index.html` in `public` folder, or using `python3 -m server.http` to invoke a http server, then type in `http://localhost:8000/public/index.html`.
+Then open http://localhost:8080 with your browser.
 
 ## Applied framework and packages
 * Front-end framework: [Vue.js](https://vuejs.org/) and vue-resource.js for sending requests.
