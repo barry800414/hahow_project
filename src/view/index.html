@@ -23,18 +23,18 @@
           </div>
       </div>
       <div id="hero-profile" v-show="profile">
-        <div id="hero-profile-container">
-          <div class="hero-ability form-group" v-for="(value, ability) in profile">
-            <label>{{ability}}</label>
-            <button class="profile-btn" v-on:click="addPoint(ability)">+</button>
-            <span>{{value}}</span>
-            <button class="profile-btn" v-on:click="minusPoint(ability)">-</button>
+          <div class="profile-block">
+            <div v-for="(value, ability) in profile">
+              <label>{{ability}}</label>
+              <button class="profile-btn" v-on:click="addPoint(ability)">+</button>
+              <span>{{value}}</span>
+              <button class="profile-btn" v-on:click="minusPoint(ability)">-</button>
+            </div>
           </div>
-          <div class="remain_points">
-            <label>剩餘點數:{{remain_points}}  </label>
+          <div class="profile-block text-right">
+            <div>剩餘點數:{{remain_points}}  </div>
             <button class="profile-btn" v-on:click="updateProfile()">儲存</button>
           </div>
-        </div>
       </div>
     </div>
     <script src="./assets/js/dependencies.js"></script>

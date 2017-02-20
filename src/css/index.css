@@ -1,4 +1,8 @@
 
+body {
+    box-sizing: border-box;
+}
+
 #hero-dashboard {
     margin: auto;
     max-width: 80%;
@@ -44,14 +48,8 @@
 }
 
 #hero-profile {
-    margin-top: 20px;
-    background: white;
-    padding: 10px;
     color: black;
     font-size: 20px;
-}
-
-#hero-profile-container {
     background: white;
 
     border-radius: 0px 0px 0px 0px;
@@ -60,7 +58,14 @@
     border: 6px solid red;
 
     padding: 30px 5% 0px 5%;
-    margin-bottom: 0px;
+    margin-bottom: 20px 8px 20px 8px;
+
+    outline: 8px solid white;
+}
+
+.profile-block {
+    display: inline-block;
+    width: 49%;
 }
 
 .profile-btn {
@@ -74,4 +79,8 @@
     background-color: red;
     border-color: white;
     color: white;
+}
+
+.text-right {
+    text-align: right;
 }
