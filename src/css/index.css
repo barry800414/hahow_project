@@ -4,12 +4,14 @@ body {
 }
 
 #hero-dashboard {
+    box-sizing: border-box;
     margin: auto;
     max-width: 80%;
     min-width: 300px;
 }
 
 #hero-list {
+    box-sizing: border-box;
     background: red;
 
     border-radius: 0px 0px 0px 0px;
@@ -57,22 +59,24 @@ body {
     -webkit-border-radius: 0px 0px 0px 0px;
     border: 6px solid red;
 
-    padding: 30px 5% 0px 5%;
-    margin-bottom: 20px 8px 20px 8px;
-
-    outline: 8px solid white;
+    padding: 20px 5% 20px 5%;
+    margin: 20px 10px 20px 10px;
 }
 
 .profile-block {
     display: inline-block;
-    width: 49%;
+    width: 100%;
 }
 
 .profile-btn {
-    border-color: red;
+    border: 2px solid red;
     border-radius: 0px;
     color: red;
-    font-size: 20px;
+    background-color: white;
+    font-size: 26px;
+    font-weight: normal;
+    min-width: 50px;
+    min-height: 50px;
 }
 
 .profile-btn:hover {
@@ -83,4 +87,19 @@ body {
 
 .text-right {
     text-align: right;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.table-data {
+    padding: 3px;
+    text-align: center;
+    min-width: 30px;
+    min-height: 30px;
+}
+
+.basic-div {
+    margin: 5px;
 }
