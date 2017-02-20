@@ -74,6 +74,7 @@ gulp.task('browser-sync', function() {
 
     gulp.watch(src.js + 'main/*.js', ['make:main-scripts']);
     gulp.watch(src.css + '*.css', ['copy:style']);
+    gulp.watch(src.view + 'index.html', ['copy:view']);
     gulp.watch(dest.static + 'index.html').on('change', browserSync.reload);
 });
 
