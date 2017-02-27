@@ -55,6 +55,9 @@ var heroProfile = new Vue({
             this.hero_id = 0;
         },
         loadHeroProfile: function(hero_id) {
+            if(this.hero_id === hero_id) {
+                return;
+            }
             this.loading = true;
             this.$http.get(`http://hahow-recruit.herokuapp.com/heroes/${hero_id}/profile`).then(
                 res => { return res.json(); },
