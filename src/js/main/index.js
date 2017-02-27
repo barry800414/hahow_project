@@ -3,14 +3,19 @@ var heroList = new Vue({
     data: {
         heros: null,
         selected_hero: -1,
+        loading: false,
+        nImageLoaded: 0,
+        nImageToLoad: 0,
     },
     created: function() {
+        this.loading = true;
         //send request to get hero list, and update hero list interface
         this.$http.get("http://hahow-recruit.herokuapp.com/heroes").then(
             res => { return res.json(); },
             err => { alert("讀取英雄列表發生錯誤:", err);
         }).then(function(data){
             this.heros = data;
+            this.nImageToLoad = this.heros.length;
         });
     },
     methods: {
@@ -25,6 +30,12 @@ var heroList = new Vue({
             this.selected_hero = hero_id;
             heroProfile.loadHeroProfile(hero_id);
         },
+        imageLoaded: function(){
+            this.nImageLoaded += 1;
+            if(this.nImageLoaded >= this.nImageToLoad) {
+                this.loading = false;
+            }
+        }
     },
 });
 
@@ -34,6 +45,7 @@ var heroProfile = new Vue({
         hero_id: 0,
         profile: null,
         remain_points: 0,
+        loading: false,
     },
     methods: {
         //reset heroProfile to initial status
@@ -43,12 +55,14 @@ var heroProfile = new Vue({
             this.hero_id = 0;
         },
         loadHeroProfile: function(hero_id) {
+            this.loading = true;
             this.$http.get(`http://hahow-recruit.herokuapp.com/heroes/${hero_id}/profile`).then(
                 res => { return res.json(); },
                 err => { alert("讀取英雄檔案時發生錯誤:", err);
             }).then(function(data){
                 this.profile = data;
                 this.hero_id = hero_id;
+                this.loading = false;
             });
         },
         addPoint: function(type) {

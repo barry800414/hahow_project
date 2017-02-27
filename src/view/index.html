@@ -13,16 +13,19 @@
   <body>
     <div id="hero-dashboard">
       <div id="hero-list">
-          <div v-for="h in heros" class="hero-card" v-on:click="loadHeroByClick(h.id)" v-bind:class="{selected: h.id == selected_hero}">
-            <div class="hero-photo">
-              <img v-bind:src="h.image">
-            </div>
-            <div class="hero-name">
-              <span>{{h.name}}</span>
-            </div>
+        <div class="spinner" v-show="loading"></div>
+        <div v-for="h in heros" class="hero-card" v-on:click="loadHeroByClick(h.id)" v-bind:class="{selected: h.id == selected_hero}" v-show="!loading">
+          <div class="hero-photo">
+            <img v-bind:src="h.image" v-on:load="imageLoaded()">
           </div>
+          <div class="hero-name">
+            <span>{{h.name}}</span>
+          </div>
+        </div>
       </div>
       <div id="hero-profile" v-show="profile">
+        <div class="red-spinner" v-show="loading"></div>
+        <div class="profile-container" v-show="!loading">
           <div class="profile-block">
             <table>
               <tr v-for="(value, ability) in profile">
@@ -42,6 +45,7 @@
             <div class="basic-div">剩餘點數:{{remain_points}}  </div>
             <button class="profile-btn" v-on:click="updateProfile()">儲存</button>
           </div>
+        </div>
       </div>
     </div>
     <script src="./assets/js/dependencies.js"></script>
