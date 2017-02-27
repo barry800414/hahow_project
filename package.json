@@ -16,6 +16,7 @@
     "gulp-main-bower-files": "^1.6.1",
     "gulp-postcss": "^6.3.0",
     "gulp-uglify": "^2.0.1",
+    "precss": "^1.4.0",
     "run-sequence": "^1.2.2"
   },
   "scripts": {
