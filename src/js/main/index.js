@@ -12,7 +12,7 @@ var heroList = new Vue({
         //send request to get hero list, and update hero list interface
         this.$http.get("http://hahow-recruit.herokuapp.com/heroes").then(
             res => { return res.json(); },
-            err => { alert("讀取英雄列表發生錯誤:", err);
+            err => { alertMsg("讀取英雄列表發生錯誤:", err);
         }).then(function(data){
             this.heros = data;
             this.nImageToLoad = this.heros.length;
@@ -58,7 +58,7 @@ var heroProfile = new Vue({
             this.loading = true;
             this.$http.get(`http://hahow-recruit.herokuapp.com/heroes/${hero_id}/profile`).then(
                 res => { return res.json(); },
-                err => { alert("讀取英雄檔案時發生錯誤:", err);
+                err => { alertMsg("讀取英雄檔案時發生錯誤:", err);
             }).then(function(data){
                 this.profile = data;
                 this.hero_id = hero_id;
@@ -79,17 +79,27 @@ var heroProfile = new Vue({
         },
         updateProfile: function() {
             if(this.remain_points !== 0){
-                alert("剩餘點數應為0");
+                alertMsg("剩餘點數應為0");
             } else {
                 this.$http.patch(`http://hahow-recruit.herokuapp.com/heroes/${this.hero_id}/profile`, this.profile).then(
-                    res => { alert('英雄檔案更新成功'); },
-                    err => { alert('更新失敗:', err);
+                    res => { alertMsg('英雄檔案更新成功'); },
+                    err => { alertMsg('更新失敗:', err);
                 });
             }
 
         }
     }
 });
+
+function alertMsg(msg){
+    var el = $(`<div class="alert-message">${msg}</div>`);
+    $("#alert-message-container").append(el);
+    $(el).fadeIn(500, function() {
+        $(this).delay(4000).fadeOut(500, function() {
+            $(this).remove();
+        });
+    });
+}
 
 const router = Router({
   "/heros": {
