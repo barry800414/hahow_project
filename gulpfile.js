@@ -7,6 +7,11 @@ const uglify = require('gulp-uglify');
 const browserSync = require('browser-sync');
 const mainBowerFiles = require('gulp-main-bower-files');
 
+//postcss
+const postcss = require("gulp-postcss");
+const autoprefixer = require("autoprefixer");
+const precss = require("precss");
+
 const basePath = {
     src: 'src/',
     dest: 'public/assets/',
@@ -25,6 +30,21 @@ const dest = {
     view: basePath.static,
     css: basePath.dest + 'css/',
 };
+
+/* Subtasks */
+
+//Task: build css
+
+gulp.task('make:css', function(){
+    const plugins = [
+        precss(),
+        autoprefixer(),
+    ];
+    return gulp.src(src.css + '*.css')
+        .pipe(postcss(plugins))
+        .pipe(gulp.dest(dest.css))
+        .pipe(browserSync.stream());
+});
 
 gulp.task('make:js-dependencies', function(){
     return gulp.src('./bower.json')
@@ -52,15 +72,6 @@ gulp.task('copy:view', function() {
         .pipe(browserSync.stream());
 });
 
-//Task: copy css
-gulp.task('copy:style', function() {
-    return gulp.src([
-            src.css + 'index.css',
-        ])
-        .pipe(gulp.dest(dest.css))
-        .pipe(browserSync.stream());
-});
-
 gulp.task('browser-sync', function() {
     browserSync.init({
         server: {
@@ -72,7 +83,7 @@ gulp.task('browser-sync', function() {
     });
 
     gulp.watch(src.js + 'main/*.js', ['make:main-scripts']);
-    gulp.watch(src.css + '*.css', ['copy:style']);
+    gulp.watch(src.css + '*.css', ['make:css']);
     gulp.watch(src.view + 'index.html', ['copy:view']);
     gulp.watch(dest.static + 'index.html').on('change', browserSync.reload);
 });
@@ -80,5 +91,5 @@ gulp.task('browser-sync', function() {
 
 //Main task runner
 gulp.task('default', function() {
-    runSequence( 'make:js-dependencies', 'make:main-scripts', 'copy:view', 'copy:style', 'browser-sync');
+    runSequence( 'make:js-dependencies', 'make:main-scripts', 'copy:view', 'make:css', 'browser-sync');
 });
