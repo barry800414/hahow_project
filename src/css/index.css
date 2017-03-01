@@ -1,3 +1,31 @@
+$lg-min: 1280px;
+$md-min: 1025px;
+$sm-min: 768px;
+
+@media only screen and (min-width: $lg-min) {
+    .hero-card {
+        flex: 0 0 calc((100% - 160px) / 4);
+    }
+}
+
+@media only screen and (min-width: $md-min) and (max-width: $lg-min) {
+    .hero-card {
+        flex: 0 0 calc((100% - 120px) / 3);
+    }
+}
+
+@media only screen and (min-width: $sm-min) and (max-width: $md-min) {
+    .hero-card {
+        flex: 0 0 calc((100% - 80px) / 2);
+    }
+}
+
+@media only screen and (max-width: $sm-min) {
+    .hero-card {
+        flex: 0 0 calc((100% - 40px));
+    }
+}
+
 
 body {
     box-sizing: border-box;
@@ -17,19 +45,22 @@ body {
     border-radius: 0px 0px 0px 0px;
     border: 6px solid #ffffff;
 
-    padding: 20px 20px 0px 20px;
+    padding: 20px 0px 0px 0px;
     margin: 10px;
     outline: 8px solid red;
+
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .hero-card {
-    padding: 10px;
+    padding: 10px 0px 10px 0px;
     background: white;
     border-width: 0px;
     box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
-    margin: 0px 5px 20px 5px;
-
-    display: inline-block;
+    margin: 0px 20px 20px 20px;
+    text-align: center;
+    box-sizing: border-box;
 }
 
 .hero-card:hover, .hero-card.selected {
