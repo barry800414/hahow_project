@@ -11,17 +11,22 @@
   <link rel="stylesheet" href="./assets/css/index.css" type="text/css">
   </head>
   <body>
-    <div id="hero-dashboard">
-      <div id="hero-list">
-        <div class="spinner" v-show="loading"></div>
-        <div v-for="h in heros" class="hero-card" v-on:click="loadHeroByClick(h.id)" v-bind:class="{selected: h.id == selected_hero}" v-show="!loading">
-          <div class="hero-photo">
-            <img v-bind:src="h.image" v-on:load="imageLoaded()">
-          </div>
-          <div class="hero-name">
-            <span>{{h.name}}</span>
-          </div>
+    <!--hero-card template-->
+    <script type="text/x-template" id="hero-card-template">
+      <div class="hero-card" @click="loadHeroByClick()" :class="{'selected': hero.id === selected_hero}" v-show="loaded">
+        <div class="hero-photo">
+          <img v-bind:src="hero.image" @load="imageLoaded()">
         </div>
+        <div class="hero-name">
+          <span>{{hero.name}}</span>
+        </div>
+      </div>
+    </script>
+
+    <div id="hero-dashboard">
+      <div id="hero-list" class="hero-list">
+        <div class="spinner" v-show="loading"></div>
+        <hero-card v-for="h in heros" v-bind:hero="h" v-bind:selected_hero="selected_hero" v-on:image-loaded="imageLoadedUpdate" v-on:select-hero="selectHero"></hero-card>
       </div>
       <div id="hero-profile" v-show="profile">
         <div class="red-spinner" v-show="loading"></div>
