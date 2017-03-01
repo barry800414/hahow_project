@@ -1,11 +1,35 @@
+Vue.component('hero-card', {
+    template: "#hero-card-template",
+    props: ["hero", "selected_hero"],
+    data: function() {
+        return {
+            loaded: false,
+        }
+    },
+    methods: {
+        loadHeroByClick: function() {
+            this.loadHero(this.hero.id);
+            router.setRoute(`/heros/${this.hero.id}`);
+        },
+        loadHero: function(){
+            heroProfile.loadHeroProfile(this.hero.id);
+            this.$emit("select-hero", this.hero.id);
+        },
+        imageLoaded: function(){
+            this.loaded = true;
+            this.$emit("image-loaded");
+        }
+    }
+});
+
 var heroList = new Vue({
     el: '#hero-list',
     data: {
         heros: null,
         selected_hero: -1,
         loading: false,
-        nImageLoaded: 0,
-        nImageToLoad: 0,
+        n_img_loaded: 0,
+        n_img_to_load: 0,
     },
     created: function() {
         this.loading = true;
@@ -15,26 +39,21 @@ var heroList = new Vue({
             err => { alertMsg("讀取英雄列表發生錯誤:", err);
         }).then(function(data){
             this.heros = data;
-            this.nImageToLoad = this.heros.length;
+            this.n_img_to_load = this.heros.length;
         });
     },
     methods: {
         reset: function() {
             this.selected_hero = -1;
         },
-        loadHeroByClick: function(hero_id) {
-            this.loadHero(hero_id);
-            router.setRoute(`/heros/${hero_id}`);
-        },
-        loadHero: function(hero_id){
-            this.selected_hero = hero_id;
-            heroProfile.loadHeroProfile(hero_id);
-        },
-        imageLoaded: function(){
-            this.nImageLoaded += 1;
-            if(this.nImageLoaded >= this.nImageToLoad) {
+        imageLoadedUpdate: function() {
+            this.n_img_to_load += 1;
+            if(this.n_img_to_load >= this.n_img_loaded){
                 this.loading = false;
             }
+        },
+        selectHero: function(hero_id) {
+            this.selected_hero = hero_id;
         }
     },
 });
@@ -113,7 +132,7 @@ const router = Router({
   },
   "/heros/:hero_id": {
     on: (hero_id) => {
-        heroList.loadHero(hero_id);
+        heroList.selectHero(hero_id);
     },
   },
 }).configure({
